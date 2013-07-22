@@ -1,6 +1,7 @@
 from rdflib.term import URIRef, BNode
 import re
 from rdflib.graph import ConjunctiveGraph, Graph
+from rdflib.util import guess_format
 
 def get_hashuri_str(baseuri, hashstr, suffix=None):
     s = expand_baseuri(baseuri) + hashstr
@@ -64,3 +65,6 @@ def get_conjunctivegraph(quads):
 #         cg.add((s, p, o))
     cg.addN([(s, p, o, Graph(store=cg.store, identifier=c)) for (c, s, p, o) in quads])
     return cg
+
+def get_format(filename):
+    return guess_format(filename, {'xml': 'trix', 'ttl': 'turtle', 'nq': 'nquads', 'nt': 'nt', 'rdf': 'xml'})
