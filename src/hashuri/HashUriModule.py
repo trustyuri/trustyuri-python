@@ -1,5 +1,5 @@
 class HashUriModule:
     def algorithm_id(self):
         return ""
-    def is_correct_hash(self, resource, hashstr):
+    def has_correct_hash(self, resource):
         return False

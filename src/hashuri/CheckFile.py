@@ -1,5 +1,8 @@
-import sys, HashUriUtils, urllib2
+import sys, logging, HashUriUtils, urllib2
 from hashuri import ModuleDirectory
+from hashuri.HashUriResource import HashUriResource
+
+logging.basicConfig(level=logging.ERROR)
 
 filename = sys.argv[1]
 
@@ -10,7 +13,8 @@ try:
     content = open(filename, 'r').read()
 except:
     content = urllib2.urlopen(filename).read();
-if module.is_correct_hash(content, datapart):
+resource = HashUriResource(filename, content, datapart)
+if module.has_correct_hash(resource):
     print "Correct hash: " + datapart
 else:
     print "*** INCORRECT HASH ***"
