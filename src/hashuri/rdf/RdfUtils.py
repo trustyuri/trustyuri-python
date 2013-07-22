@@ -18,7 +18,7 @@ def get_hashuri(resource, baseuri, hashstr, bnodemap):
         return None
     if isinstance(resource, URIRef):
         suffix = get_suffix(resource, baseuri)
-        if suffix is None and not str(resource) == str(baseuri):
+        if suffix is None and not get_str(resource) == get_str(baseuri):
             return resource
         return URIRef(get_hashuri_str(baseuri, hashstr, suffix))
     if isinstance(resource, BNode):
@@ -28,25 +28,25 @@ def get_hashuri(resource, baseuri, hashstr, bnodemap):
         return None
 
 def get_suffix(plainuri, baseuri):
-    p = str(plainuri)
-    b = str(baseuri)
+    p = get_str(plainuri)
+    b = get_str(baseuri)
     if (p == b): return None
     if (p.startswith(b)): return p[len(b):]
     return None
 
 def normalize(uri, hashstr):
-    if hashstr is None: return str(uri)
-    return re.sub(hashstr, " ", str(uri))
+    if hashstr is None: return get_str(uri)
+    return re.sub(hashstr, " ", get_str(uri))
 
 def get_bnode_number(bnode, bnodemap):
-    i = str(bnode)
+    i = get_str(bnode)
     if not bnodemap.has_key(i):
         n = len(bnodemap)+1
         bnodemap[i] = n
     return bnodemap[i]
 
 def expand_baseuri(baseuri):
-    s = str(baseuri)
+    s = get_str(baseuri)
     if re.match(r'.*[A-Za-z0-9\-_]', s): s = s + "."
     return s
 
@@ -68,3 +68,6 @@ def get_conjunctivegraph(quads):
 
 def get_format(filename):
     return guess_format(filename, {'xml': 'trix', 'ttl': 'turtle', 'nq': 'nquads', 'nt': 'nt', 'rdf': 'xml'})
+
+def get_str(s):
+    return s.encode('utf-8')

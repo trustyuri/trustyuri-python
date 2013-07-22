@@ -18,11 +18,11 @@ class StatementComparator:
         if (r1 is None) and (r2 is None): return 0
         if (r1 is None) and (not r2 is None): return -1
         if (not r1 is None) and (r2 is None): return 1
-        return self.compare_uri(str(r1), str(r2))
+        return self.compare_uri(r1, r2)
     def compare_subject(self, q1, q2):
-        return self.compare_uri(str(q1[1]), str(q2[1]))
+        return self.compare_uri(q1[1], q2[1])
     def compare_predicate(self, q1, q2):
-        return self.compare_uri(str(q1[2]), str(q2[2]))
+        return self.compare_uri(q1[2], q2[2])
     def compare_object(self, q1, q2):
         r1 = q1[3]
         r2 = q2[3]
@@ -31,10 +31,10 @@ class StatementComparator:
         if isinstance(r1, Literal):
             return self.compare_literal(r1, r2)
         else:
-            return self.compare_uri(str(r1), str(r2))
+            return self.compare_uri(r1, r2)
     def compare_literal(self, l1, l2):
-        x1 = str(l1)
-        x2 = str(l2)
+        x1 = l1.encode('utf-8')
+        x2 = l2.encode('utf-8')
         if (x1 < x2): return -1
         if (x1 > x2): return 1
         x1 = l1.datatype
@@ -50,7 +50,9 @@ class StatementComparator:
         if (not x1 is None) and (x1 < x2): return -1
         if (not x1 is None) and (x1 > x2): return 1
         return 0
-    def compare_uri(self, s1, s2):
+    def compare_uri(self, r1, r2):
+        s1 = r1.encode('utf-8')
+        s2 = r2.encode('utf-8')
         p1 = s1
         p2 = s2
         if not self.hashstr is None:
