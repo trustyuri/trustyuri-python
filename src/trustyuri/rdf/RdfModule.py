@@ -3,7 +3,7 @@ from trustyuri.rdf import RdfHasher, RdfUtils
 from rdflib.graph import ConjunctiveGraph
 
 class RdfModule(TrustyUriModule):
-    def algorithm_id(self):
+    def module_id(self):
         return "RA"
     def has_correct_hash(self, resource):
         f = RdfUtils.get_format(resource.get_filename())

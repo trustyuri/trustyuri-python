@@ -6,8 +6,8 @@ def check(args):
     filename = args[0]
     
     tail = TrustyUriUtils.get_trustyuri_tail(filename)
-    algorithm_id = tail[:2]
-    module = ModuleDirectory.get_module(algorithm_id)
+    module_id = tail[:2]
+    module = ModuleDirectory.get_module(module_id)
     try:
         content = open(filename, 'r').read()
     except:

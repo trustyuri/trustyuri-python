@@ -4,7 +4,7 @@ from trustyuri.rdf.RdfModule import RdfModule
 modules = {}
 
 def add_module(module):
-    modules[module.algorithm_id()] = module
+    modules[module.module_id()] = module
 
 def get_module(name):
     return modules[name]
