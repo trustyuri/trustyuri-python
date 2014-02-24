@@ -1,4 +1,4 @@
-class HashUriResource:
+class TrustyUriResource:
     def __init__(self, filename, content, hashstr):
         self.filename = filename
         self.content = content

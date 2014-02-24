@@ -1,7 +1,7 @@
-from hashuri.HashUriModule import HashUriModule
-from hashuri.file import FileHasher
+from trustyuri.TrustyUriModule import TrustyUriModule
+from trustyuri.file import FileHasher
 
-class FileModule(HashUriModule):
+class FileModule(TrustyUriModule):
     def algorithm_id(self):
         return "FA"
     def has_correct_hash(self, resource):

@@ -1,6 +1,6 @@
 import sys, logging
 from rdflib.graph import ConjunctiveGraph
-from hashuri.rdf import RdfUtils, RdfTransformer
+from trustyuri.rdf import RdfUtils, RdfTransformer
 from rdflib.term import URIRef
 import os
 

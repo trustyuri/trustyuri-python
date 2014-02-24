@@ -2,4 +2,4 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd ../src && pwd )"
 export PYTHONPATH=$PYTHONPATH:$DIR
-python $DIR/hashuri/RunBatch.py $*
+python $DIR/trustyuri/RunBatch.py $*

@@ -3,7 +3,7 @@ import re
 from rdflib.graph import ConjunctiveGraph, Graph
 from rdflib.util import guess_format
 
-def get_hashuri_str(baseuri, hashstr, suffix=None):
+def get_trustyuri_str(baseuri, hashstr, suffix=None):
     s = expand_baseuri(baseuri) + hashstr
     if not suffix is None:
         if suffix.startswith("."):
@@ -13,14 +13,14 @@ def get_hashuri_str(baseuri, hashstr, suffix=None):
             s = s + "." + suffix
     return s
 
-def get_hashuri(resource, baseuri, hashstr, bnodemap):
+def get_trustyuri(resource, baseuri, hashstr, bnodemap):
     if resource is None:
         return None
     if isinstance(resource, URIRef):
         suffix = get_suffix(resource, baseuri)
         if suffix is None and not get_str(resource) == get_str(baseuri):
             return resource
-        return URIRef(get_hashuri_str(baseuri, hashstr, suffix))
+        return URIRef(get_trustyuri_str(baseuri, hashstr, suffix))
     if isinstance(resource, BNode):
         n = get_bnode_number(resource, bnodemap)
         return URIRef(expand_baseuri(baseuri) + hashstr + ".." + n)

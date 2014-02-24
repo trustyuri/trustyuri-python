@@ -1,8 +1,8 @@
-from hashuri.HashUriModule import HashUriModule
-from hashuri.rdf import RdfHasher, RdfUtils
+from trustyuri.TrustyUriModule import TrustyUriModule
+from trustyuri.rdf import RdfHasher, RdfUtils
 from rdflib.graph import ConjunctiveGraph
 
-class RdfModule(HashUriModule):
+class RdfModule(TrustyUriModule):
     def algorithm_id(self):
         return "RA"
     def has_correct_hash(self, resource):

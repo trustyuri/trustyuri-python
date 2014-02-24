@@ -1,9 +1,9 @@
 import hashlib
-from hashuri import HashUriUtils
-from hashuri.rdf.StatementComparator import StatementComparator
+from trustyuri import TrustyUriUtils
+from trustyuri.rdf.StatementComparator import StatementComparator
 from rdflib.term import URIRef
 import re
-from hashuri.rdf.RdfPreprocessor import preprocess
+from trustyuri.rdf.RdfPreprocessor import preprocess
 
 def make_hash(quads, hashstr=None):
     quads = preprocess(quads, hashstr=hashstr)
@@ -15,7 +15,7 @@ def make_hash(quads, hashstr=None):
         s = s + value_to_string(q[1], hashstr);
         s = s + value_to_string(q[2], hashstr);
         s = s + value_to_string(q[3], hashstr);
-    return "RA" + HashUriUtils.get_base64(hashlib.sha256(s).digest())
+    return "RA" + TrustyUriUtils.get_base64(hashlib.sha256(s).digest())
 
 def value_to_string(value, hashstr):
     if value is None:

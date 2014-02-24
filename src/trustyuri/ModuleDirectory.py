@@ -1,5 +1,5 @@
-from hashuri.file.FileModule import FileModule
-from hashuri.rdf.RdfModule import RdfModule
+from trustyuri.file.FileModule import FileModule
+from trustyuri.rdf.RdfModule import RdfModule
 
 modules = {}
 

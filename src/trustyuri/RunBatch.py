@@ -1,7 +1,7 @@
 import sys, logging, re, time
 import CheckFile
-from hashuri.file import ProcessFile
-from hashuri.rdf import TransformRdf
+from trustyuri.file import ProcessFile
+from trustyuri.rdf import TransformRdf
 
 logging.basicConfig(level=logging.ERROR)
 

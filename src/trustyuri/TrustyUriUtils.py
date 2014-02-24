@@ -1,6 +1,6 @@
 import re, base64
 
-def get_hashuri_datapart(s):
+def get_trustyuri_tail(s):
     if not re.search(r'(.*[^A-Za-z0-9\-_]|)[A-Za-z0-9\-_]{25,}(\.[A-Za-z0-9\-_]{0,20})?', s):
         return ""
     return re.sub(r'^(.*[^A-Za-z0-9\-_]|)([A-Za-z0-9\-_]{25,})(\.[A-Za-z0-9\-_]{0,20})?$', r'\2', s)

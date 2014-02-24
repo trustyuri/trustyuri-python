@@ -1,5 +1,5 @@
 import re, os
-from hashuri.rdf import RdfPreprocessor, RdfUtils, RdfHasher, HashAdder
+from trustyuri.rdf import RdfPreprocessor, RdfUtils, RdfHasher, HashAdder
 
 def transform_to_file(conjgraph, baseuri, outdir, filename):
     quads = RdfUtils.get_quads(conjgraph)
@@ -13,7 +13,7 @@ def transform_to_file(conjgraph, baseuri, outdir, filename):
     ext = os.path.splitext(filename)[1]
     rdfFormat = RdfUtils.get_format(filename)
     conjgraph.serialize(outdir + "/" + name + hashstr + ext, format=rdfFormat)
-    return RdfUtils.get_hashuri(baseuri, baseuri, hashstr, None)
+    return RdfUtils.get_trustyuri(baseuri, baseuri, hashstr, None)
 
 def transform_to_string(conjgraph, baseuri):
     quads = RdfUtils.get_quads(conjgraph)

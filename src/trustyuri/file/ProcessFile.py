@@ -1,5 +1,5 @@
 import sys, os, re
-from hashuri.file import FileHasher
+from trustyuri.file import FileHasher
 
 def process(args):
     filename = args[0]

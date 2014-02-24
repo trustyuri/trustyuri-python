@@ -1,5 +1,5 @@
 from rdflib.term import URIRef
-from hashuri.rdf import RdfUtils
+from trustyuri.rdf import RdfUtils
 
 def preprocess(quads, hashstr=None, baseuri=None):
     newquads = []
@@ -18,4 +18,4 @@ def transform(uri, hashstr, baseuri, bnodemap):
     if uri is None: return None
     if baseuri is None:
         return URIRef(RdfUtils.normalize(uri, hashstr))
-    return RdfUtils.get_hashuri(uri, baseuri, " ", bnodemap)
+    return RdfUtils.get_trustyuri(uri, baseuri, " ", bnodemap)
