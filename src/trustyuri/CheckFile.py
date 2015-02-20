@@ -1,4 +1,4 @@
-import sys, logging, TrustyUriUtils, urllib2
+import sys, logging, TrustyUriUtils, urllib2, codecs
 from trustyuri import ModuleDirectory
 from trustyuri.TrustyUriResource import TrustyUriResource
 
@@ -9,7 +9,7 @@ def check(args):
     module_id = tail[:2]
     module = ModuleDirectory.get_module(module_id)
     try:
-        content = open(filename, 'r').read()
+        content = codecs.open(filename, 'r', 'utf-8').read()
     except:
         content = urllib2.urlopen(filename).read();
     resource = TrustyUriResource(filename, content, tail)

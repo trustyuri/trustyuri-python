@@ -17,7 +17,7 @@ def make_hash(quads, hashstr=None):
         s = s + value_to_string(q[3], hashstr)
     # Uncomment next line to see what goes into the hash:
     #print "-----\n" + s + "-----\n"
-    return "RA" + TrustyUriUtils.get_base64(hashlib.sha256(s).digest())
+    return "RA" + TrustyUriUtils.get_base64(hashlib.sha256(s.encode('utf-8')).digest())
 
 def value_to_string(value, hashstr):
     if value is None:
@@ -32,4 +32,4 @@ def value_to_string(value, hashstr):
         return "^http://www.w3.org/2001/XMLSchema#string " + escape(value) + "\n"
 
 def escape(s):
-    return re.sub(r'\n', r'\\n', str(s))
+    return re.sub(r'\n', r'\\n', s)
