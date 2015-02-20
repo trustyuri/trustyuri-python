@@ -24,10 +24,10 @@ def value_to_string(value, hashstr):
         return value + "\n"
     else:
         if not value.language is None:
-            return "@" + value.datatype + " " + escape(value) + "\n"
+            return "@" + value.language + " " + escape(value) + "\n"
         if not value.datatype is None:
             return "^" + value.datatype + " " + escape(value) + "\n"
-        return "^" + "http://www.w3.org/2001/XMLSchema#string " + escape(value) + "\n"
+        return "^http://www.w3.org/2001/XMLSchema#string " + escape(value) + "\n"
 
 def escape(s):
     return re.sub(r'\n', r'\\n', str(s))
