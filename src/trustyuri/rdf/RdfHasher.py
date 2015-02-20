@@ -11,10 +11,12 @@ def make_hash(quads, hashstr=None):
     quads = sorted(quads, cmp=lambda q1, q2: comp.compare(q1, q2))
     s = ""
     for q in quads:
-        s = s + value_to_string(q[0], hashstr);
-        s = s + value_to_string(q[1], hashstr);
-        s = s + value_to_string(q[2], hashstr);
-        s = s + value_to_string(q[3], hashstr);
+        s = s + value_to_string(q[0], hashstr)
+        s = s + value_to_string(q[1], hashstr)
+        s = s + value_to_string(q[2], hashstr)
+        s = s + value_to_string(q[3], hashstr)
+    # Uncomment next line to see what goes into the hash:
+    #print "-----\n" + s + "-----\n"
     return "RA" + TrustyUriUtils.get_base64(hashlib.sha256(s).digest())
 
 def value_to_string(value, hashstr):
