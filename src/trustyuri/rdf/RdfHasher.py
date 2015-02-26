@@ -10,11 +10,16 @@ def make_hash(quads, hashstr=None):
     comp = StatementComparator(hashstr)
     quads = sorted(quads, cmp=lambda q1, q2: comp.compare(q1, q2))
     s = ""
+    previous = ""
     for q in quads:
-        s = s + value_to_string(q[0], hashstr)
-        s = s + value_to_string(q[1], hashstr)
-        s = s + value_to_string(q[2], hashstr)
-        s = s + value_to_string(q[3], hashstr)
+        e = ""
+        e = e + value_to_string(q[0], hashstr)
+        e = e + value_to_string(q[1], hashstr)
+        e = e + value_to_string(q[2], hashstr)
+        e = e + value_to_string(q[3], hashstr)
+        if not e == previous:
+            s = s + e
+        previous = e
     # Uncomment next line to see what goes into the hash:
     #print "-----\n" + s + "-----\n"
     return "RA" + TrustyUriUtils.get_base64(hashlib.sha256(s.encode('utf-8')).digest())
@@ -26,7 +31,8 @@ def value_to_string(value, hashstr):
         return value + "\n"
     else:
         if not value.language is None:
-            return "@" + value.language + " " + escape(value) + "\n"
+            # TODO: proper canonicalization of language tags
+            return "@" + value.language.lower() + " " + escape(value) + "\n"
         if not value.datatype is None:
             return "^" + value.datatype + " " + escape(value) + "\n"
         return "^http://www.w3.org/2001/XMLSchema#string " + escape(value) + "\n"

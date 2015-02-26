@@ -3,7 +3,7 @@ from trustyuri.rdf import RdfUtils
 
 def preprocess(quads, hashstr=None, baseuri=None):
     newquads = []
-    bnodemap = []
+    bnodemap = {}
     for q in quads:
         c = transform(q[0], hashstr, baseuri, bnodemap)
         s = transform(q[1], hashstr, baseuri, bnodemap)

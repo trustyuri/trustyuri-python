@@ -9,7 +9,7 @@ def transform_to_file(conjgraph, baseuri, outdir, filename):
     conjgraph = RdfUtils.get_conjunctivegraph(quads)
     name = ""
     if (not baseuri is None) and re.match('.*/.*', str(baseuri)):
-        name = re.sub(r'^.*[^A-Za-z0-9.\\-_]([A-Za-z0-9.\\-_]*)$', r'\1', str(baseuri)) + "."
+        name = re.sub(r'^.*[^A-Za-z0-9.\-_]([A-Za-z0-9.\-_]*)$', r'\1', str(baseuri)) + "."
     ext = os.path.splitext(filename)[1]
     rdfFormat = RdfUtils.get_format(filename)
     conjgraph.serialize(outdir + "/" + name + hashstr + ext, format=rdfFormat)

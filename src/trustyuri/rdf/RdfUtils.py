@@ -23,7 +23,7 @@ def get_trustyuri(resource, baseuri, hashstr, bnodemap):
         return URIRef(get_trustyuri_str(baseuri, hashstr, suffix))
     if isinstance(resource, BNode):
         n = get_bnode_number(resource, bnodemap)
-        return URIRef(expand_baseuri(baseuri) + hashstr + ".." + n)
+        return URIRef(expand_baseuri(baseuri) + hashstr + ".." + str(n))
     else:
         return None
 
