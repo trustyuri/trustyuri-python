@@ -6,11 +6,11 @@ from rdflib.util import guess_format
 def get_trustyuri_str(baseuri, hashstr, suffix=None):
     s = expand_baseuri(baseuri) + hashstr
     if not suffix is None:
-        if suffix.startswith("."):
-            # Make three dots, as two dots are reserved for blank nodes
-            s = s + ".." + suffix
+        if suffix.startswith("_"):
+            # Make two underscores, as one underscore is reserved for blank nodes
+            s = s + "#_" + suffix
         else:
-            s = s + "." + suffix
+            s = s + "#" + suffix
     return s
 
 def get_trustyuri(resource, baseuri, hashstr, bnodemap):
@@ -23,7 +23,7 @@ def get_trustyuri(resource, baseuri, hashstr, bnodemap):
         return URIRef(get_trustyuri_str(baseuri, hashstr, suffix))
     if isinstance(resource, BNode):
         n = get_bnode_number(resource, bnodemap)
-        return URIRef(expand_baseuri(baseuri) + hashstr + ".." + str(n))
+        return URIRef(expand_baseuri(baseuri) + hashstr + "#_" + str(n))
     else:
         return None
 

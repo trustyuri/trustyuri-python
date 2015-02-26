@@ -1,4 +1,4 @@
-from rdflib.term import URIRef
+from rdflib.term import URIRef, BNode
 from trustyuri.rdf import RdfUtils
 
 def preprocess(quads, hashstr=None, baseuri=None):
@@ -9,7 +9,7 @@ def preprocess(quads, hashstr=None, baseuri=None):
         s = transform(q[1], hashstr, baseuri, bnodemap)
         p = transform(q[2], hashstr, baseuri, bnodemap)
         o = q[3]
-        if isinstance(q[3], URIRef):
+        if isinstance(q[3], URIRef) or isinstance(q[3], BNode):
             o = transform(q[3], hashstr, baseuri, bnodemap)
         newquads.append((c, s, p, o));
     return newquads
