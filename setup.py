@@ -4,6 +4,6 @@ setup(
     name='trustyuri',
     version='0.0.1',
     author='TrustyURI',
-    py_modules=['trustyuri'],
+    packages=['trustyuri'],
     description='Generate and check trusty URIs.'
 )
