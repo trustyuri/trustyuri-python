@@ -3,12 +3,13 @@ from trustyuri import TrustyUriUtils
 from trustyuri.rdf.StatementComparator import StatementComparator
 from rdflib.term import URIRef
 import re
+from functools import cmp_to_key
 from trustyuri.rdf.RdfPreprocessor import preprocess
 
 def make_hash(quads, hashstr=None):
     quads = preprocess(quads, hashstr=hashstr)
     comp = StatementComparator(hashstr)
-    quads = sorted(quads, cmp=lambda q1, q2: comp.compare(q1, q2))
+    quads = sorted(quads, key=cmp_to_key(lambda q1, q2: comp.compare(q1, q2)))
     s = ""
     previous = ""
     for q in quads:
