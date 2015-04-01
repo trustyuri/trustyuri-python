@@ -6,6 +6,7 @@ from rdflib.util import guess_format
 def get_trustyuri_str(baseuri, hashstr, suffix=None):
     s = expand_baseuri(baseuri) + hashstr
     if not suffix is None:
+        suffix = suffix.decode('utf-8')
         if suffix.startswith("_"):
             # Make two underscores, as one underscore is reserved for blank nodes
             s = s + "#_" + suffix
@@ -46,7 +47,7 @@ def get_bnode_number(bnode, bnodemap):
     return bnodemap[i]
 
 def expand_baseuri(baseuri):
-    s = get_str(baseuri)
+    s = get_str(baseuri).decode('utf-8')
     if re.match(r'.*[A-Za-z0-9\-_]', s): s = s + "."
     return s
 
