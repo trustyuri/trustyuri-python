@@ -39,4 +39,4 @@ def value_to_string(value, hashstr):
         return "^http://www.w3.org/2001/XMLSchema#string " + escape(value) + "\n"
 
 def escape(s):
-    return re.sub(r'\n', r'\\n', s)
+    return re.sub(r'\n', r'\\n', re.sub(r'\\', r'\\\\', s))
