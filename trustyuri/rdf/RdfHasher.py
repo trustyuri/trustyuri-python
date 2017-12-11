@@ -14,10 +14,10 @@ def make_hash(quads, hashstr=None):
     previous = ""
     for q in quads:
         e = ""
-        e = e + value_to_string(q[0], hashstr)
-        e = e + value_to_string(q[1], hashstr)
-        e = e + value_to_string(q[2], hashstr)
-        e = e + value_to_string(q[3], hashstr)
+        e = e + value_to_string(q[0])
+        e = e + value_to_string(q[1])
+        e = e + value_to_string(q[2])
+        e = e + value_to_string(q[3])
         if not e == previous:
             s = s + e
         previous = e
@@ -25,7 +25,7 @@ def make_hash(quads, hashstr=None):
     #print "-----\n" + s + "-----\n"
     return "RA" + TrustyUriUtils.get_base64(hashlib.sha256(s.encode('utf-8')).digest())
 
-def value_to_string(value, hashstr):
+def value_to_string(value):
     if value is None:
         return "\n"
     elif isinstance(value, URIRef):
