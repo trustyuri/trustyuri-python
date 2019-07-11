@@ -60,8 +60,14 @@ class StatementComparator:
         p1 = s1
         p2 = s2
         if not self.hashstr is None:
-            p1 = re.sub(self.hashstr, ' ', s1)
-            p2 = re.sub(self.hashstr, ' ', s2)
+            try:
+                p1 = re.sub(self.hashstr, ' ', s1)
+            except:
+                p1 = re.sub(self.hashstr, ' ', r1)
+            try:
+                p2 = re.sub(self.hashstr, ' ', s2)
+            except:
+                p2 = re.sub(self.hashstr, ' ', r2)
         if p1 < p2: return -1
         if p1 == p2: return 0
         return 1

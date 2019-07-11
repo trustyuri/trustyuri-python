@@ -1,5 +1,5 @@
 import sys, logging, re, time
-import CheckFile
+from . import CheckFile
 from trustyuri.file import ProcessFile
 from trustyuri.rdf import TransformRdf
 
@@ -12,7 +12,7 @@ with open(filename) as f:
         line = line.strip()
         if (re.match(r'^#|^$', line)):
             continue
-        print "COMMAND: " + line
+        print ("COMMAND: " + line)
         cmdargs = line.split(' ')
         cmd = cmdargs.pop(0)
         starttime = time.time()
@@ -24,10 +24,10 @@ with open(filename) as f:
             elif (cmd == "TransformRdf"):
                 TransformRdf.transform(cmdargs)
             else:
-                print "ERROR: Unrecognized command ", cmd
+                print ("ERROR: Unrecognized command %s" % cmd)
                 exit(1)
         except:
-            print sys.exc_info()[0]
+            print (sys.exc_info()[0])
         t = time.time() - starttime
-        print "Time in seconds: ", t
-        print "---"
+        print ("Time in seconds: %g" % t)
+        print ("---")

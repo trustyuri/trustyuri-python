@@ -17,5 +17,8 @@ def preprocess(quads, hashstr=None, baseuri=None):
 def transform(uri, hashstr, baseuri, bnodemap):
     if uri is None: return None
     if baseuri is None:
-        return URIRef(RdfUtils.normalize(uri, hashstr).decode('utf-8'))
+        try:
+            return URIRef(RdfUtils.normalize(uri, hashstr).decode('utf-8'))
+        except:
+            return URIRef(RdfUtils.normalize(uri, hashstr))
     return RdfUtils.get_trustyuri(uri, baseuri, " ", bnodemap)

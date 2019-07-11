@@ -1,22 +1,28 @@
-import sys, logging, TrustyUriUtils, urllib2, codecs
+import sys, logging, codecs
+from trustyuri import TrustyUriUtils
 from trustyuri import ModuleDirectory
 from trustyuri.TrustyUriResource import TrustyUriResource
+try:
+    from urllib2 import urlopen
+except ImportError:
+    # Python 3 case
+    from urllib.request import urlopen
 
 def check(args):
     filename = args[0]
-    
+
     tail = TrustyUriUtils.get_trustyuri_tail(filename)
     module_id = tail[:2]
     module = ModuleDirectory.get_module(module_id)
     try:
         content = codecs.open(filename, 'r', 'utf-8').read()
     except:
-        content = urllib2.urlopen(filename).read();
+        content = urlopen(filename).read()
     resource = TrustyUriResource(filename, content, tail)
     if module.has_correct_hash(resource):
-        print "Correct hash: " + tail
+        print ("Correct hash: " + tail)
     else:
-        print "*** INCORRECT HASH ***"
+        print ("*** INCORRECT HASH ***")
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.ERROR)

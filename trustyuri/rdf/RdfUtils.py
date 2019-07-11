@@ -37,11 +37,14 @@ def get_suffix(plainuri, baseuri):
 
 def normalize(uri, hashstr):
     if hashstr is None: return get_str(uri)
-    return re.sub(hashstr, " ", get_str(uri))
+    try:
+        return re.sub(hashstr, " ", str(uri))
+    except:
+        return re.sub(hashstr.decode('utf-8'), " ", str(uri))
 
 def get_bnode_number(bnode, bnodemap):
     i = get_str(bnode)
-    if not bnodemap.has_key(i):
+    if i not in bnodemap.keys():
         n = len(bnodemap)+1
         bnodemap[i] = n
     return bnodemap[i]
@@ -58,7 +61,7 @@ def get_quads(conjunctivegraph):
         if not isinstance(g, URIRef): g = None
         quads.append((g, s, p, o))
     return quads
-    
+
 def get_conjunctivegraph(quads):
     cg = ConjunctiveGraph()
 #     for (c, s, p, o) in quads:

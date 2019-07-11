@@ -7,13 +7,13 @@ import os
 def transform(args):
     filename = args[0]
     baseuristr = args[1]
-    
+
     with open(filename, "r") as f:
         rdfFormat = RdfUtils.get_format(filename)
         cg = ConjunctiveGraph()
         cg.parse(data=f.read(), format=rdfFormat)
         baseuri = URIRef(baseuristr)
-        outdir = os.path.abspath(os.path.join(str(file), os.pardir))
+        outdir = os.path.abspath(os.path.join(str(filename), os.pardir))
         RdfTransformer.transform_to_file(cg, baseuri, outdir, filename)
 
 if __name__ == "__main__":
