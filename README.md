@@ -14,6 +14,7 @@ You have to install the rdflib package:
 
     $ pip install rdflib
 
+Using Linux/macOS as Operating System is recommended.
 
 License
 -------
