@@ -4,8 +4,7 @@ from trustyuri import ModuleDirectory
 from trustyuri.TrustyUriResource import TrustyUriResource
 try:
     from urllib2 import urlopen
-except ImportError:
-    # Python 3 case
+except:
     from urllib.request import urlopen
 
 def check(args):
